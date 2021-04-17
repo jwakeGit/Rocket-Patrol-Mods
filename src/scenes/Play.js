@@ -6,6 +6,7 @@ class Play extends Phaser.Scene {
     preload(){
         // load images/tile sprites
         this.load.image('rocket', './assets/rocket.png');
+        this.load.image('wizard', './assets/wizard.png');
         this.load.image('spaceship', './assets/spaceship.png');
         this.load.image('starfield', './assets/starfield.png');
         this.load.image('scenery', './assets/background.png');
@@ -32,19 +33,13 @@ class Play extends Phaser.Scene {
         game.config.width, borderUISize * 2, 
         0x00FF00).setOrigin(0, 0);
 
-        // white borders
-        this.add.rectangle(0, 0, game.config.width, 
-        borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, game.config.height - borderUISize,
-        game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(0, 0, borderUISize, game.config.height, 
-        0xFFFFFF).setOrigin(0, 0);
-        this.add.rectangle(game.config.width - borderUISize, 0, 
-        borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
-
         // add rocket (player 1)
         this.p1Rocket = new Rocket(this, game.config.width/2, 
             game.config.height - borderUISize - borderPadding, 'rocket').setOrigin(0.5, 0.5);
+
+        // add wizard
+        this.wizard = new Wizard(this, game.config.width/2,
+            game.config.height - borderUISize - borderPadding, 'wizard').setOrigin(0.5, 0.5);
 
         // add spaceship (x3)
         this.ship01 = new Spaceship(this, game.config.width + borderUISize*6,
@@ -54,6 +49,16 @@ class Play extends Phaser.Scene {
         this.ship03 = new Spaceship(this, game.config.width, 
             borderUISize*6 + borderPadding*4, 'spaceship', 0, 10).setOrigin(0,0);
 
+        // white borders
+        this.add.rectangle(0, 0, game.config.width, 
+            borderUISize, 0xFFFFFF).setOrigin(0, 0);
+            this.add.rectangle(0, game.config.height - borderUISize,
+            game.config.width, borderUISize, 0xFFFFFF).setOrigin(0, 0);
+            this.add.rectangle(0, 0, borderUISize, game.config.height, 
+            0xFFFFFF).setOrigin(0, 0);
+            this.add.rectangle(game.config.width - borderUISize, 0, 
+            borderUISize, game.config.height, 0xFFFFFF).setOrigin(0, 0);
+    
         // define keys
         keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
@@ -118,6 +123,7 @@ class Play extends Phaser.Scene {
         // update calls
         if(!this.gameOver) {
             this.p1Rocket.update();
+            if(!this.p1Rocket.isFiring) this.wizard.x = this.p1Rocket.x;
             this.ship01.update();
             this.ship02.update();
             this.ship03.update();

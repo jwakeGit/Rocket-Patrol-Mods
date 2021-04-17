@@ -1,17 +1,17 @@
-// Rocket (player) prefab
+// Wizard (player) prefab
 
-class Rocket extends Phaser.GameObjects.Sprite {
+class Wizard extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {
         super(scene, x, y, texture, frame);
         
         // add object to the existing scene
         scene.add.existing(this);
         this.isFiring = false;      // track firing status
-        this.moveSpeed = 3;         // pixels per frame
-        this.sfxRocket = scene.sound.add('sfx_rocket'); // add rocket sfx
+        this.moveSpeed = 2;         // pixels per frame
     }
-
+/*
     update(){
+
         // left / right movement
         // if(!this.isFiring) {
             if(keyLEFT.isDown && this.x >= borderUISize + this.width) {
@@ -25,11 +25,11 @@ class Rocket extends Phaser.GameObjects.Sprite {
         // }
         // fire button
         if(Phaser.Input.Keyboard.JustDown(keyF)) {
-            if(this.isFiring == false) this.sfxRocket.play();
             this.isFiring = true;
-            console.log('rocket is firing');
+            console.log('wizard is firing');
         }
-        // if fired, move the rocket up
+
+        // if fired, move the wizard up
         if(this.isFiring && this.y >= borderUISize * 3 + borderPadding) {
             this.y -= this.moveSpeed;
         }
@@ -39,9 +39,10 @@ class Rocket extends Phaser.GameObjects.Sprite {
         }
     }
 
-    // reset rocket to "ground"
+    // reset wizard to "ground"
     reset() {
         this.isFiring = false;
         this.y = game.config.height - borderUISize - borderPadding;
     }
+    */
 }
