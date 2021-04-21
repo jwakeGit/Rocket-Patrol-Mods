@@ -28,4 +28,4 @@ let starSpeed = -2;
 let wizardPos = 0;
 
 // reserve keyboard bindings
-let keyF, keyR, keyLEFT, keyRIGHT; 
+let keyF, keyR, keyLEFT, keyRIGHT, keyUP; 
